@@ -18,13 +18,13 @@ public class ParkingSpotController {
 
     private final ParkingSpotRepository spotRepository;
 
-    // Получить все места
+
     @GetMapping
     public ResponseEntity<List<ParkingSpot>> getAllSpots() {
         return ResponseEntity.ok(spotRepository.findAll());
     }
 
-    // Получить свободные места (с опциональным фильтром по типу: /api/spots/available?type=CAR)
+
     @GetMapping("/available")
     public ResponseEntity<List<ParkingSpot>> getAvailableSpots(@RequestParam(required = false) VehicleType type) {
         if (type != null) {
@@ -33,13 +33,13 @@ public class ParkingSpotController {
         return ResponseEntity.ok(spotRepository.findByIsOccupiedFalse());
     }
 
-    // Добавить новое парковочное место (Create)
+
     @PostMapping
     public ResponseEntity<ParkingSpot> createSpot(@Valid @RequestBody ParkingSpot spot) {
         return new ResponseEntity<>(spotRepository.save(spot), HttpStatus.CREATED);
     }
 
-    // Удалить парковочное место (Delete)
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteSpot(@PathVariable Long id) {
         spotRepository.deleteById(id);

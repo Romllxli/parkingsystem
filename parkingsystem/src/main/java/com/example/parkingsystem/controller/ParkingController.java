@@ -15,20 +15,14 @@ import org.springframework.web.bind.annotation.*;
 public class ParkingController {
     private final ParkingService parkingService;
 
-    /**
-     * Эндпоинт для въезда автомобиля на парковку
-     * POST /api/parking/park
-     */
+
     @PostMapping("/park")
     public ResponseEntity<ParkingSessionResponse> parkVehicle(@Valid @RequestBody ParkVehicleRequest request) {
         ParkingSessionResponse response = parkingService.parkVehicle(request);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
-    /**
-     * Эндпоинт для выезда автомобиля с парковки
-     * POST /api/parking/unpark/{sessionId}
-     */
+
     @PostMapping("/unpark/{sessionId}")
     public ResponseEntity<ParkingSessionResponse> unparkVehicle(@PathVariable Long sessionId) {
         ParkingSessionResponse response = parkingService.unparkVehicle(sessionId);

@@ -16,7 +16,7 @@ public class ParkingSpot {
     private Long id;
 
     @Column(name = "spot_number", nullable = false, unique = true)
-    private String spotNumber; //
+    private String spotNumber;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "allowed_type", nullable = false)
